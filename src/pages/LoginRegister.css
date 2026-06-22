@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* --- Variables de Design (extraites directement du cahier des charges) --- */
+:root {
+  --primary: #1E3A8A;  /* Bleu principal */
+  --secondary: #F59E0B; /* Jaune accent */
+  --bg-light: #D9D9D9;  /* Gris clair fond */
+  --text-dark: #1F2937; /* Gris foncé texte */
+  --danger: #DC2626;    /* Rouge erreur */
+  --success: #15803D;   /* Vert succès */
+  --font-primary: 'Poppins', sans-serif;  /* Titres */
+  --font-secondary: 'Open Sans', sans-serif; /* Texte */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+  font-family: var(--font-secondary);
+}
+
+/* --- Conteneur principal du formulaire (MODIFIÉ : plus de margin-top pour éviter le collage au header) --- */
+.login-register-container {
+  max-width: 400px;
+  margin: 120px auto 50px auto; /* Augmenté à 120px en haut pour espacement + header fixe */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white; /* Blanc pour contraste avec --bg-light */
+  text-align: center;
+  font-family: var(--font-secondary);
+}
+
+/* --- Titre du formulaire --- */
+.login-register-container h2 {
+  color: var(--primary);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Styles pour les messages d'erreur et succès --- */
+.login-register-container .alert {
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  border: 1px solid;
+  font-size: 0.9rem;
+  font-family: var(--font-secondary);
+}
+
+.login-register-container .alert-error {
+  color: var(--danger);
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.login-register-container .alert-success {
+  color: var(--success);
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+/* --- Styles pour les inputs (MODIFIÉ : background-color en #D9D9D9 / --bg-light) --- */
+.login-register-container .form-input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-family: var(--font-secondary);
+  background-color: var(--bg-light); /* Nouveau : Fond gris clair pour les champs */
+  transition: border-color 0.3s ease;
+}
+
+.login-register-container .form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+  background-color: var(--bg-light); /* Garde le fond gris au focus */
+}
+
+.login-register-container .form-input:disabled {
+  background-color: #e5e7eb; /* Gris plus clair pour disabled (optionnel : change en var(--bg-light) si tu veux uniformiser) */
+  cursor: not-allowed;
+}
+
+/* --- Style pour le bouton submit --- */
+.login-register-container .btn-submit {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0 5px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  transition: background-color 0.3s ease;
+}
+
+.login-register-container .btn-submit:hover:not(:disabled) {
+  background-color: var(--secondary);
+}
+
+.login-register-container .btn-submit:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* --- Lien toggle pour basculer login/register --- */
+.toggle-link {
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: var(--font-primary);
+  transition: color 0.3s ease;
+}
+
+.toggle-link:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+/* --- Texte descriptif sous le toggle --- */
+.toggle-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-family: var(--font-secondary);
+}
+
+/* --- Responsive Design (conforme au cahier des charges) --- */
+@media (max-width: 480px) {
+  .login-register-container {
+    max-width: 90%;
+    margin: 100px auto 30px auto; /* Réduit légèrement sur mobile pour ne pas trop descendre */
+    padding: 15px;
+  }
+
+  .login-register-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .login-register-container .form-input,
+  .login-register-container .btn-submit {
+    font-size: 0.95rem;
+  }
+}

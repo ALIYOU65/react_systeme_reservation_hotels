@@ -1,0 +1,431 @@
+/* -------------------- WRAPPER PRINCIPAL -------------------- */
+.dashboardContainer {
+  background: transparent !important; /* Fond transparent global */
+  padding: 150px 2rem 120px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  color: #1F2937;
+  box-sizing: border-box;
+}
+
+/* Assurer transparence partout */
+body, html, .appWrapper, main {
+  background: transparent !important;
+}
+
+/* -------------------- SECTIONS -------------------- */
+.section {
+  background: transparent; /* Pas de fond blanc/gris */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  color: #1E3A8A;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* -------------------- FORMULAIRES -------------------- */
+.form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form input,
+.form textarea,
+.form select {
+  padding: 0.75rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form textarea { 
+  min-height: 80px; 
+  resize: vertical; 
+}
+
+.form button {
+  background: #1E3A8A;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.form button:disabled {
+  background: #9CA3AF;
+  cursor: not-allowed;
+}
+
+/* -------------------- LISTE ET CARTES -------------------- */
+.list {
+  display: grid;
+  gap: 1rem;
+}
+
+.item {
+  background: #D9D9D9; /* Gris clair pour les cartes */
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.item.pending { 
+  border-left: 4px solid #F59E0B; 
+}
+
+.item.validated { 
+  border-left: 4px solid #10B981; 
+}
+
+/* -------------------- STATUS -------------------- */
+.statusWrapper {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+}
+
+.status {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: #F59E0B;
+  color: white;
+}
+
+.status.green { 
+  background: #10B981; /* Vert pour Libre */
+}
+
+.status.red { 
+  background: #EF4444; /* Rouge pour Occupée */
+}
+
+.status.orange { 
+  background: #F59E0B; 
+}
+
+.status.yellow { 
+  background: #F59E0B; 
+}
+
+/* -------------------- TITRES ET ÉTOILES -------------------- */
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Étoiles et nom collés */
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.titleRow .stars { 
+  margin: 0; 
+  flex: 0; 
+}
+
+.titleRow .hotelName { 
+  flex: 0; 
+  text-align: left; 
+  font-size: 1.1rem; 
+  color: #000; 
+  font-weight: bold; 
+}
+
+.titleRow.chambreTitle h4 { 
+  text-align: left; 
+  font-size: 1.25rem; 
+}
+
+/* Nouveau : Centrage pour noms de chambres */
+.chamberRight h4 {
+  text-align: center;
+}
+
+.stars { 
+  display: flex; 
+  gap: 2px; 
+}
+
+.star { 
+  font-size: 16px; 
+  color: #ddd; 
+}
+
+.star.filled { 
+  color: #ffd700; 
+}
+
+/* -------------------- DESCRIPTION / ADRESSE / PRIX -------------------- */
+.description { 
+  color: #374151; 
+  font-size: 0.95rem; 
+  margin: 0; 
+  line-height: 1.4; 
+}
+
+.address { 
+  color: #6B7280; 
+  font-size: 0.9rem; 
+  font-style: italic; 
+  margin: 0; 
+}
+
+.price { 
+  color: #3B82F6; 
+  font-size: 1rem; 
+  font-weight: 500; 
+  margin: 0; 
+  white-space: nowrap; 
+}
+
+.pricePrefix { 
+  color: #000; 
+}
+
+.priceValue { 
+  color: #4530FF; 
+}
+
+/* Nouveaux : Styles pour prix et disponibilité chambres (gras, #000000, valeur #4530FF) */
+.chamberPrice, .chamberStatus {
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+}
+
+.chamberPrice .priceLabel, .chamberStatus .statusLabel {
+  font-weight: bold;
+  color: #000000;
+}
+
+.chamberPrice .priceValue {
+  color: #4530FF;
+}
+
+/* -------------------- ACTIONS -------------------- */
+.actions { 
+  display: flex; 
+  gap: 0.5rem; 
+  align-self: flex-end; 
+  margin-top: auto; 
+}
+
+.actions button { 
+  padding: 0.5rem 1rem; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  font-size: 0.875rem; 
+}
+
+.actions button:first-child { 
+  background: #1E3A8A; 
+  color: white; 
+}
+
+.actions .delete { 
+  background: #EF4444; 
+  color: white; 
+}
+
+/* -------------------- CAROUSEL HÔTEL -------------------- */
+.item .carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Hauteur légèrement augmentée */
+  overflow: hidden;
+  margin: 0; /* Supprime marge autour */
+  padding: 0; /* Supprime padding */
+  border-radius: 8px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.carouselImages {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.carouselImage {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 40;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.carouselBtn:hover { 
+  background: rgba(0,0,0,0.9); 
+}
+
+.carouselBtn.prev { 
+  left: 8px; 
+}
+
+.carouselBtn.next { 
+  right: 8px; 
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.dot { 
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%; 
+  background: #ddd; 
+  cursor: pointer; 
+}
+
+.dot.active { 
+  background: #1E3A8A; 
+}
+
+/* -------------------- CHAMBRES -------------------- */
+.chambreItem { 
+  background: #fff; /* Les chambres restent sur fond blanc */
+}
+
+.chamberContent { 
+  display: flex; 
+  gap: 1rem; 
+  align-items: flex-start; 
+}
+
+.chamberLeft { 
+  flex: 0 0 200px; 
+}
+
+.chamberRight { 
+  flex: 2; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.5rem; 
+}
+
+.reserveBtn { 
+  background: #F59E0B; 
+  color: white; 
+  border: none; 
+  padding: 0.75rem 1.5rem; 
+  border-radius: 6px; 
+  font-weight: 600; 
+  cursor: pointer; 
+  align-self: flex-start; 
+  margin-top: 0.5rem; 
+}
+
+.chambreCarousel { 
+  max-height: 250px; 
+  width: 100%; 
+}
+
+.chambreCarousel .carousel { 
+  height: 250px; 
+}
+
+.chambreCarousel .carouselImage { 
+  object-fit: cover; 
+}
+
+/* -------------------- ERREURS -------------------- */
+.error { 
+  color: #EF4444; 
+  text-align: center; 
+  padding: 1rem; 
+  background: #FEF2F2; 
+  border-radius: 6px; 
+  margin: 1rem 0; 
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 768px) {
+  .carousel { 
+    height: 200px; 
+  }
+  .carouselBtn { 
+    width: 32px; 
+    height: 32px; 
+    font-size: 18px; 
+    padding: 0; 
+    left: 5px; 
+    right: 5px; 
+  }
+  .titleRow { 
+    gap: 0.25rem; 
+  }
+  .titleRow .hotelName { 
+    font-size: 1rem; 
+  }
+}
+
+/* Classes Bootstrap-like pour les liens de navigation (adaptées) */
+.btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.btnPrimary {
+  background: #007bff;
+}
+
+.btnSecondary {
+  background: #6c757d;
+}
+
+.me2 {
+  margin-right: 0.5rem;
+}
+
+.navigationLinks {
+  margin-bottom: 20px;
+  text-align: center;
+}

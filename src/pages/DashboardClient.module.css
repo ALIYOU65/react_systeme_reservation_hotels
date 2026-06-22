@@ -1,0 +1,222 @@
+.dashboardClientContainer {
+  padding: 150px 2rem 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  background-color: #F9FAFB;
+  color: #1F2937;
+}
+
+.searchForm {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ==== FOND GRIS #D9D9D9 POUR TOUS LES CHAMPS DE RECHERCHE ==== */
+.searchForm input {
+  padding: 0.75rem;
+  border: 1px solid #D9D9D9 !important;
+  background-color: #D9D9D9 !important;   /* ← FOND GRIS IDENTIQUE À L'ACCUEIL */
+  border-radius: 10px !important;        /* coins arrondis comme sur l'accueil */
+  flex: 1;
+  min-width: 150px;
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+
+
+.searchForm button {
+  padding: 0.75rem 1.5rem;
+  background: #1E3A8A;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* === GRILLE 2 COLONNES (6 par page) === */
+.hotelsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .hotelsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hotelCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotelCard:hover {
+  transform: translateY(-4px);
+}
+
+.hotelLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotelImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.hotelCard h3 {
+  padding: 1rem 1rem 0.5rem;
+  margin: 0;
+  color: #1E3A8A;
+  font-size: 1.25rem;
+}
+
+.hotelCard p {
+  padding: 0 1rem;
+  margin: 0.5rem 0;
+  color: #374151;
+}
+
+.stars {
+  padding: 0 1rem;
+  display: flex;
+  gap: 4px;
+  margin: 0.5rem 0;
+}
+
+.star {
+  font-size: 20px;
+}
+
+.filled { color: #D97706; }
+.empty  { color: #E5E7EB; }
+
+.price {
+  padding: 0 1rem 1rem;
+  color: #3B82F6;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.viewDetailsBtn {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.9rem;
+  background: #1E3A8A;
+  color: white;
+  border: none;
+  border-radius: 0 0 12px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.viewDetailsBtn:hover {
+  background: #1E40AF;
+}
+
+.error {
+  color: #EF4444;
+  text-align: center;
+  padding: 1rem;
+  background: #FEF2F2;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #1e3a8a;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #1e3a8a;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.navLink:hover {
+  background-color: #1e3a8a;
+  color: white;
+}
+
+/* === PAGINATION === */
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.paginationBtn {
+  padding: 0.7rem 1.5rem;
+  background-color: #1E3A8A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.paginationBtn:hover:not(:disabled) {
+  background-color: #1E40AF;
+}
+
+.paginationBtn:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pageInfo {
+  font-size: 1.1rem;
+  color: #4B5563;
+  min-width: 140px;
+  text-align: center;
+}
+
+/* Espacement propre entre contenu et footer */
+.dashboardClientContainer {
+  padding: 150px 2rem 180px 2rem;   /* plus de place en bas */
+  min-height: calc(100vh - 100px);
+}
+
+/* Wrapper pour pousser la pagination loin du footer */
+.paginationWrapper {
+  margin: 4rem 0 6rem 0;   /* marge haute + marge basse généreuse */
+  display: flex;
+  justify-content: center;
+}
+
+/* (le reste du CSS reste exactement comme dans le message précédent) */

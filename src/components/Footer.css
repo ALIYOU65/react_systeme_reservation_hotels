@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400&display=swap');
+
+footer {
+  background-color: #1F2937 !important;
+  color: white;
+  padding: 0.5rem 1rem;
+  min-height: 3rem;
+  width: 100vw;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Conteneur principal */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* ✅ centrage vertical */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Icônes à gauche et à droite */
+.footer-left,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Bloc central (contacts + copyright) */
+
+.footer-center p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8rem;
+  margin: 0.4rem 0 0.1rem 0; /* ✅ marge top = 0.4rem, bottom = 0.1rem */
+  color: #F9FAFB;
+  line-height: 1.2;
+}
+
+/* Icônes */
+footer img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0.85);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+footer a:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.2) hue-rotate(40deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    justify-content: center;
+  }
+
+  .footer-center {
+    order: 3;
+  }
+}
+

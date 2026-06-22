@@ -1,0 +1,716 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+:root {
+  --color-primary: #1E3A8A;
+  --color-accent: #F59E0B;
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+  --color-text-dark: #1F2937;
+  --color-text-light: #6B7280;
+  --color-input-bg: #F3F4F6;
+  --border-radius: 12px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  background-color: #D9D9D9 !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.homeContainer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #D9D9D9; /* Renforce le fond au cas où */
+  min-height: 100vh;
+}
+.homeContainer .hero {
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: 6rem 2rem 10rem 2rem;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+.homeContainer .hero h1 {
+  color: white;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin: 0;
+  line-height: 1.2;
+}
+@media (max-width: 768px) {
+  .homeContainer .hero {
+    padding: 4rem 1rem 8rem 1rem;
+  }
+  .homeContainer .hero h1 {
+    font-size: 1.8rem;
+  }
+}
+.searchBoxWrapper {
+  position: relative;
+  z-index: 10;
+  margin-top: -120px;
+  padding: 0 1rem;
+}
+.searchBox {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.searchBox h2 {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+.searchForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: end;
+}
+.inputGroup {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 0.5rem;
+}
+.inputGroup input[type="number"] {
+  padding: 0.75rem 1rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  background: var(--color-input-bg);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.inputGroup input[type="number"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+/* Ajustements pour éviter chevauchement : largeur accrue pour le groupe prix si nécessaire */
+.inputPrixGroup {
+  min-width: 180px;
+  flex: 1;
+}
+/* Nouveau groupe pour checkbox */
+.inputCheckboxGroup {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  flex: 1;
+}
+.inputCheckboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+.inputCheckboxGroup input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+.btnRechercher {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  height: fit-content;
+  align-self: end;
+  white-space: nowrap;
+}
+.btnRechercher:hover {
+  background: #1E40AF;
+}
+@media (max-width: 768px) {
+  .searchForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btnRechercher {
+    align-self: stretch;
+  }
+  .inputPrixGroup,
+  .inputCheckboxGroup {
+    min-width: auto;
+  }
+}
+.dashboardContainer {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.dashboardContainer .section {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 2rem 0;
+  margin-bottom: 0;
+  border: none;
+  width: 100%;
+}
+.chambresSection {
+  padding: 2rem 0 0 0 !important;
+}
+.chambresSection .list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2rem;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+.item, .chambreItem {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+.dashboardContainer h2 {
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
+}
+.carouselContainer {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 2rem auto;
+  height: 600px; /* Augmenté pour afficher l'image complètement */
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.carouselImages {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+.carouselImage {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carouselBtn:hover {
+  background: rgba(0,0,0,0.8);
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #D1D5DB;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.active {
+  background: var(--color-primary);
+}
+/* === INFOS HÔTEL – PARFAITEMENT IDENTIQUE À LA MAQUETTE === */
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;           /* ← maintenant ça marche à 100% ! Tu peux mettre 1rem, 1.5rem, 2rem… */
+  margin: 2rem 0 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.stars {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.star {
+  font-size: 2rem;
+  color: #E5E7EB;
+}
+
+.filled {
+  color: #FBBF24;
+}
+
+.hotelName {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #000000 !important;   /* ← noir pur, garanti */
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Le reste reste identique et déjà parfait */
+.description {
+  font-size: 1rem;
+  color: #4B5563;
+  line-height: 1.6;
+  margin: 1rem auto 1.5rem auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.address {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 2.5rem 0 3rem 0;
+}
+
+.pricePrefix {
+  color: #000000;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.priceValue {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4530FF;
+}
+@media (max-width: 768px) {
+  .carouselContainer {
+    height: 400px; /* Augmenté pour mobile */
+  }
+  .titleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .stars {
+    align-self: flex-start;
+  }
+}
+.chambreItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.chamberContent {
+  display: flex;
+  flex-direction: row; /* Alignement horizontal: photo à gauche, texte à droite */
+  gap: 0;
+  align-items: stretch;
+  height: 350px; /* Augmenté pour plus d'espace */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid #000; /* Bordure noire ajoutée */
+  width: 100%; /* Occupe toute la largeur */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.chamberLeft {
+  flex: 0 0 40%; /* Largeur fixe pour la photo, ajustable */
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.chambreCarousel {
+  height: 100%; /* Pleine hauteur du conteneur */
+  border-radius: 0; /* Pas de border-radius sur l'image seule, géré par parent */
+  overflow: hidden;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.chambreCarousel .carouselImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.chamberRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: white; /* Background blanc pour le côté texte */
+  padding: 1.5rem;
+  justify-content: space-between; /* Pour pousser le bouton en bas */
+  margin: 0 !important;
+  border-left: 1px solid #000; /* Bordure noire entre photo et texte */
+}
+.chamberRight h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+.chamberRight p {
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  line-height: 1.4;
+  margin: 0;
+}
+.chamberRight .label {
+  font-weight: bold;
+  color: #000000;
+}
+.chamberRight .priceValue {
+  font-weight: bold;
+  color: #4530FF;
+}
+.reserveBtn {
+  background: var(--color-accent) !important;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  width: auto;
+}
+.reserveBtn:hover {
+  background: #D97706 !important;
+}
+.badgeDisponible {
+  background-color: var(--color-success) !important;
+  color: white !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+.badgeOccupee {
+  background-color: var(--color-danger) !important;
+  color: white !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+/* Pagination pour chambres */
+.chambrePagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.chambrePagination .paginationBtn.prevBtn {
+  background: #000000;
+  color: white;
+  border: 1px solid #000000;
+}
+.chambrePagination .paginationBtn.nextBtn {
+  background: #1E3A8A;
+  color: white;
+  border: 1px solid #1E3A8A;
+}
+.chambrePagination .pageNumberBtn {
+  background: white;
+  color: #000000;
+  border: 1px solid #000000;
+}
+.chambrePagination .pageNumberBtn.active {
+  background: #000000;
+  color: white;
+  border: 1px solid #000000;
+}
+.chambrePagination .paginationBtn:hover:not(:disabled),
+.chambrePagination .pageNumberBtn:hover:not(.active) {
+  background: #f0f0f0;
+}
+.chambrePagination .paginationBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #D1D5DB !important;
+  color: #000000 !important;
+}
+.noRoomsMessage {
+  text-align: center;
+  color: var(--color-text-light);
+  font-style: italic;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+@media (max-width: 768px) {
+  .chambresSection .list {
+    gap: 1rem;
+  }
+  .chamberContent {
+    flex-direction: column; /* Vertical sur mobile */
+    height: auto;
+  }
+  .chamberLeft {
+    flex: none;
+    height: 200px;
+  }
+  .chambreCarousel {
+    height: 200px;
+  }
+  .chamberRight {
+    padding: 1rem;
+    border-left: none; /* Pas de bordure sur mobile */
+    border-top: 1px solid #000; /* Bordure en haut sur mobile */
+  }
+}
+.avisSection {
+  max-width: 800px;
+  margin: 3rem auto;
+}
+.avisTitle {
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+.avisList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.avisItem {
+  padding: 1.5rem;
+  border: 1px solid #E5E7EB;
+  border-radius: var(--border-radius);
+  background: white;
+}
+.avisStars {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+.avisForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #E5E7EB;
+  border-radius: var(--border-radius);
+  background: white;
+}
+.noteGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.noteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.noteLabel {
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+.noteValue {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.noteSlider {
+  width: 100%;
+  height: 5px;
+  background: #D1D5DB;
+  border-radius: 5px;
+  outline: none;
+  appearance: none; /* Fallback standard CSS */
+  -webkit-appearance: none; /* Vendor-specific pour WebKit */
+}
+.noteSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.avisTextarea {
+  padding: 1rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  background-color: #D9D9D9;
+  color: #000000;
+}
+.btnEnvoyer {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  align-self: center;
+  width: 40%;               
+  max-width: 260px;
+}
+.btnEnvoyer:hover:not(:disabled) {
+  background: var( --color-primary);
+} 
+.btnEnvoyer:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+.error {
+  color: var(--color-danger);
+}
+@media (max-width: 768px) {
+  .avisSection {
+    margin: 2rem 1rem;
+    padding: 0 1rem;
+  }
+  .avisForm {
+    padding: 1rem;
+  }
+  .chambrePagination {
+    margin-top: 1rem;
+  }
+}
+/* Ajouts pour les modificateurs de pagination (assure-toi qu'ils existent dans le CSS si pas déjà) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.paginationBtn {
+  padding: 0.6rem 1rem;
+  border: 1px solid #D1D5DB;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  min-width: 40px;
+}
+.prevBtn {
+  background: #000000;
+  color: white;
+  border: 1px solid #000000;
+}
+.nextBtn {
+  background: #1E3A8A;
+  color: white;
+  border: 1px solid #1E3A8A;
+}
+.pageNumberBtn {
+  background: white;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 0.6rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  min-width: 30px;
+}
+.pageNumberBtn.active {
+  background: #000000;
+  color: white;
+  border: 1px solid #000000;
+}
+.paginationBtn:hover:not(:disabled),
+.pageNumberBtn:hover:not(.active) {
+  background: #f0f0f0;
+}
+.paginationBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #D1D5DB !important;
+  color: #000000 !important;
+}
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+/* Empêche le footer de coller au formulaire */
+.homeContainer {
+    padding-bottom: 10rem; /* Ajustable : 3rem, 5rem, etc. */
+}
+
+
+
+
+
+
+

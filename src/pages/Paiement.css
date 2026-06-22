@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Variables de Design --- */
+:root {
+  --color-primary: #1e3a8a;
+  --color-accent: #f59e0b;
+  --color-text-dark: #111827;
+  --color-background-light: #f9fafb;
+  --color-input-bg: #d9d9d9;
+}
+
+/* --- Reset global avec fond gris clair --- */
+html, body, #root, .home-container, .reservation-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  font-family: 'Poppins', sans-serif;
+  background-color: #D9D9D9 !important; /* Fond gris clair global */
+}
+
+.paiement-container {
+  background-color: #D9D9D9 !important; /* Assure pour la page paiement */
+  padding-bottom: 4rem !important; /* Espace en bas pour éviter chevauchement footer */
+}
+
+/* ---- SECTION HERO ---- */
+.hero {
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem 8rem 1rem;
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+
+.hero h1 {
+  color: white;
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* ---- SEARCH BOX ---- */
+.search-box-wrapper {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  margin-top: -100px;
+}
+
+.search-box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 1.8rem 2rem;
+  width: 90%;
+  max-width: 950px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.search-box h2 {
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex: 1;
+  min-width: 150px;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 6px;
+}
+
+.search-form input {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  color: #374151;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--color-input-bg);
+}
+
+/* ---- Champs spécifiques ---- */
+.input-ville,
+.input-date,
+.input-prix {
+  flex: 1;
+  background-color: var(--color-input-bg);
+}
+
+/* ---- DATES GROUP ---- */
+.date-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---- PRIX ---- */
+.input-prix-group {
+  max-width: none; /* même largeur que les autres champs */
+}
+
+/* ---- BUTTON ---- */
+.btn-rechercher {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  height: 45px;
+  align-self: flex-end;
+}
+
+.btn-rechercher:hover {
+  background-color: #2563eb;
+}
+
+/* ---- MESSAGE D'ERREUR ---- */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* ---- FORMULAIRE RÉSERVATION ---- */
+.reservation-section {
+  padding: 3rem 1rem 4rem 1rem; /* marge solide avant le footer */
+  display: flex;
+  justify-content: center;
+  background: white;
+}
+
+.reservation-box {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.reservation-box h2 {
+  color: var(--color-primary);
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Organisation du formulaire */
+.form-reservation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.row-dates-chambre {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.row-nom-prenom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #D1D5DB;
+  background: white;
+}
+
+/* ------------- CHAMBRE : wrapper cliquable & fiable ------------- */
+/* Règles pour garantir que le wrapper capte le clic et que le clavier fonctionne */
+.input-chambre-wrapper {
+  position: relative;
+  display: flex; /* rend toute la zone cliquable */
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background: #F3F4F6;
+  padding-right: 3rem; /* laisse la place pour l'indicateur */
+  z-index: 30;
+  min-height: 44px; /* assure alignement esthétique avec les autres inputs */
+  box-sizing: border-box;
+}
+
+/* Labels du formulaire (uniformisés pour alignement) */
+.input-group {
+  margin-bottom: 20px !important;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px !important; /* Fixe pour tous */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #6b7280 !important;
+  text-align: left !important; /* Alignement gauche uniforme */
+  font-style: italic; /* Ajout pour élégance */
+}
+
+/* Bouton payer */
+.btn-payer {
+  background: var(--color-accent) !important; /* Jaune accent pour cohérence */
+  width: 100%;
+  padding: 12px !important;
+  font-size: 16px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}
+
+.btn-payer:hover:not(:disabled) {
+  background: #d97706 !important; /* Hover plus foncé */
+}
+
+.btn-payer:disabled {
+  background: #d1d5db !important;
+  cursor: not-allowed !important;
+}
+
+/* Messages d'erreur */
+.error-message {
+  color: #df1b41 !important;
+  font-size: 14px !important;
+  margin-top: 8px !important;
+  text-align: center !important;
+}
+
+/* Styles pour CardElement unifié (champ unique pour numéro, expiry et CVC) */
+.stripe-input.unified-card {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important; /* Laisse Stripe gérer la hauteur dynamique (~80px pour numéro + row) */
+  min-height: 56px !important; /* Min pour alignement */
+  margin-bottom: 0 !important;
+  border-radius: 4px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important; /* Shadow pour pop sur fond gris */
+}
+
+/* Layout interne de Stripe pour l'élément unifié (numéro full-width, expiry+CVC en row) */
+.StripeElement {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  border: 1px solid #ccd0d5 !important;
+  border-radius: 4px !important;
+  padding: 12px !important;
+  background: white !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.StripeElement--focus {
+  border-color: #80bdff !important;
+  box-shadow: 0 0 0 1px #80bdff !important;
+}
+
+.StripeElement--invalid {
+  border-color: #df1b41 !important;
+}
+
+/* Sous-éléments internes : numéro full-width */
+.StripeElement--Input--number {
+  width: 100% !important;
+}
+
+/* Expiry + CVC : en row, flex égal */
+.StripeElement--Input--expiry,
+.StripeElement--Input--cvc {
+  flex: 1 !important;
+  min-width: 80px !important;
+}
+
+/* Sous-éléments généraux (numéro, expiry, CVC) */
+.StripeElement--Input {
+  padding: 0 12px !important;
+  font-size: 16px !important;
+  font-family: inherit !important;
+  color: #32325d !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  height: 32px !important;
+  width: auto !important; /* Auto pour s'adapter */
+  user-select: text !important; /* Force sélection/saisie texte */
+}
+
+.StripeElement--Input::placeholder {
+  color: #aab7c4 !important;
+}
+
+/* Responsive : Sur mobile, stack expiry + CVC */
+@media (max-width: 600px) {
+  .StripeElement--Input--expiry,
+  .StripeElement--Input--cvc {
+    width: 100% !important; /* Pleine largeur sur mobile */
+  }
+}
+
+/* Centrage du formulaire */
+.paiement-form {
+  max-width: 300px !important;
+  margin: 0 auto !important; /* Centre les champs */
+}

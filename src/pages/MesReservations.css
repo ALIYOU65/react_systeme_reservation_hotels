@@ -1,0 +1,141 @@
+/* ==== MES RÉSERVATIONS  ==== */
+
+.mes-reservations-container {
+  background-color: #D9D9D9;
+  min-height: 100vh;
+  padding-bottom: 180px;      /* ← Espace garanti au-dessus du footer */
+  box-sizing: border-box;
+}
+
+.hero-reservations {
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 6rem 1rem 4rem;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.hero-reservations h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.hero-reservations p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+.reservations-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.no-reservation {
+  text-align: center;
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.no-reservation button {
+  margin-top: 1rem;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.reservations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reservation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.reservation-card:hover {
+  transform: translateY(-4px);
+}
+
+.reservation-card h3 {
+  color: #1e3a8a;
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+}
+
+.reservation-card p {
+  margin: 0.6rem 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+.reservation-card p strong {
+  color: #1e3a8a;
+}
+
+/* Statut coloré */
+.status.confirmée,
+.status.confirmée { color: #10b981; font-weight: 600; }
+.status.annulée,
+.status.annulée   { color: #ef4444; font-weight: 600; }
+.status.pending   { color: #f59e0b; font-weight: 600; }
+
+.btn-payer {
+  margin-top: 1rem;
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.btn-payer:hover {
+  background: #d97706;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 4rem auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.error button {
+  margin-top: 1rem;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hero-reservations h1 { font-size: 2rem; }
+  .reservation-card { padding: 1.5rem; }
+}

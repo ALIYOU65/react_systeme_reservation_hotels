@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --primary: #1E3A8A;  /* Bleu principal */
+  --secondary: #F59E0B; /* Jaune accent */
+  --bg-light: #D9D9D9;  /* Gris clair fond */
+  --text-dark: #1F2937; /* Gris foncé texte */
+  --danger: #DC2626;   /* Rouge erreur */
+  --success: #15803D;  /* Vert succès */
+  --font-primary: 'Poppins', sans-serif;  /* Titres */
+  --font-secondary: 'Open Sans', sans-serif; /* Texte */
+}
+
+body {
+  font-family: var(--font-secondary);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+h1, h2, .btn-primary {
+  font-family: var(--font-primary);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.badge-success {
+  background-color: var(--success);
+}
+
+.badge-warning {
+  background-color: #F59E0B;  /* Jaune pour en attente */
+}
+
+/* 👈 FIX GLOBAL AMÉLIORÉ : Padding pour Header/Footer fixed sur tous les contenus */
+main, .home-container, .dashboard-wrapper, .login-register-container, .hotel-detail-container, .reservation-container {
+  padding-top: 150px !important;  /* Au-dessus du Header */
+  padding-bottom: 200px !important;  /* Au-dessous du Footer (augmenté pour éviter enfouissement) */
+  min-height: calc(100vh - 350px) !important;  /* Hauteur min ajustée (top + bottom + marge) */
+}
+
+/* Si footer est fixe, ajoute ça pour push content */
+.app-wrapper { /* Si tu as <div className="app-wrapper"> dans App.jsx */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-wrapper > *:not(footer) { /* Tous sauf footer */
+  flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

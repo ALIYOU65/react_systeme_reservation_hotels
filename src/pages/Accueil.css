@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+/* --- Variables de Design --- */
+:root {
+  --color-primary: #1e3a8a; /* Bleu foncé (Header, Titres, Bouton Recherche) */
+  --color-accent: #f59e0b; /* Jaune/Orange (Bouton Voir Détails, Étoiles) */
+  --color-text-dark: #111827; /* Texte sombre (Titres d'Hôtel) */
+  --color-background-light: #f9fafb; /* Fond de la section hôtels */
+  --color-input-bg: #d9d9d9; /* Fond gris clair des champs */
+}
+/* --- Reset global --- */
+html, 
+body, 
+#root, 
+#root > div, 
+.home-container {
+  background-color: #D9D9D9 !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* ---- SECTION HERO ---- */
+.hero {
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem 8rem 1rem;
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+.hero h1 {
+   color: white;
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin: 0;
+  text-align: center;
+}
+/* ---- SEARCH BOX ---- */
+-wrapper {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  margin-top: -100px;
+}
+/* === CORRECTION BARRE DE RECHERCHE – VERSION FINALE 100% MAQUETTE === */
+
+.search-box {
+  background-color: white;
+  border-radius: 16px;                 /* coins plus arrondis comme sur ta capture */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 2rem 2.5rem;
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.search-box h2 {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.search-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;                    /* ESPACE PARFAIT ENTRE LES CHAMPS */
+  flex-wrap: wrap;                /* wrap propre sur petits écrans */
+  justify-content: center;
+}
+
+/* Tous les champs ont le même fond gris */
+.search-form input {
+  background-color: #D9D9D9 !important;   /* FOND GRIS CLAIR COMME SUR LA MAQUETTE */
+  border: none !important;
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  color: #1f2937;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+/* Groupe Ville */
+.input-ville-group {
+  flex: 2;
+  min-width: 240px;
+}
+
+/* Groupe Dates – plus d’espace et alignement parfait */
+/* .input-date-group {
+  flex: 3;
+  min-width: 300px;
+  display: flex;
+  gap: 1rem;
+} */
+
+.date-inputs {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.date-inputs input {
+  flex: 1;
+  min-width: 130px;          /* ← AJOUTE ÇA (ou 140px / 150px) */
+}
+
+/* Groupe Prix Max */
+.input-prix-group {
+  flex: 1;
+  /* min-width: 140px; */
+  max-width: 130px;
+}
+
+/* Bouton Rechercher */
+.btn-rechercher {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0 2rem;
+  height: 48px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  /* min-width: 140px; */
+   max-width: 150px;
+}
+
+.btn-rechercher:hover {
+  background-color: #1e40af;
+}
+/* ---- MESSAGE D'ERREUR ---- */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+/* ---- SECTION HÔTELS RECOMMANDÉS ---- */
+.hotels-section {
+  padding: 4rem 2rem 8rem 2rem; /* Le "8rem" correspond au padding-bottom */
+  text-align: center;
+}
+.hotels-section h2 {
+  /* Assure le centrage exact du titre 'Hôtels Recommandés' */
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.hotel-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+/* ---- CARTES D'HÔTELS ---- */
+.hotel-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s ease;
+  border: 1px solid #e5e7eb;
+}
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+.hotel-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.hotel-info {
+  padding: 1.2rem;
+  /* Utilise flexbox pour mieux positionner les éléments */
+  display: flex;
+  flex-direction: column;
+}
+.hotel-info h3 {
+  color: var(--color-text-dark);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.hotel-info p {
+  color: #4b5563;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  /* Nouvelle propriété pour assurer l'espace avec la ligne suivante */
+  min-height: 2.5rem;
+}
+/* Nouveau style pour aligner "À partir de" */
+.price-location-tag {
+  color: #4b5563; /* Couleur similaire au texte de description */
+  font-size: 0.9rem;
+  font-weight: 400; /* Normal pour "À partir de" */
+  margin-bottom: 0.2rem;
+}
+.price-tag {
+  font-weight: 700;
+  color: var(--color-text-dark);
+  font-size: 1rem;
+}
+.location-tag {
+  color: var(--color-text-dark); /* Changé pour être plus sombre que la maquette */
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.8rem; /* Ajout d'un peu d'espace avant les étoiles */
+  margin-top: 0;
+}
+/* Étoiles et Notes */
+.stars {
+  display: flex;
+  justify-content: flex-start; /* Aligné à gauche pour étoiles */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  min-height: 25px;
+}
+.star-filled {
+  font-size: 1rem;
+}
+.star-empty {
+  color: #d1d5db; /* Gris pour vides */
+  font-size: 1rem;
+}
+/* Nouveau : Infos notes/avis */
+.notes-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+.avg-note {
+  font-weight: 600;
+  color: var(--color-accent);  /* Jaune pour note */
+}
+.avis-count {
+  color: #6b7280;
+}
+/* Style du bouton "Voir Détails" */
+.btn-details {
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  /* Ajustements pour coller à la maquette après retrait de Réserver */
+  align-self: flex-end; /* Aligner à droite dans le conteneur flex */
+  margin-top: auto; /* Pousse le bouton vers le bas */
+}
+.btn-details:hover {
+  background-color: #d97706;
+}
+.stars_btn-details {
+    display: flex;
+    flex-direction: column; /* Étoiles en haut, notes au milieu, btn en bas */
+    width: 100%; /* Important si vous voulez que space-between fonctionne bien */
+}
+/* ---- RESPONSIVE : Wrap et ajustements sur petits écrans ---- */
+@media (max-width: 1200px) {
+  .search-form {
+    flex-wrap: wrap; /* Autorise wrap si fenêtre trop petite */
+  }
+  .input-date-group {
+    flex-basis: 100%; /* Dates pleine largeur si wrap */
+  }
+  .btn-rechercher {
+    flex-basis: 100%;
+    margin-left: 0;
+    align-self: center;
+  }
+}
+@media (max-width: 900px) {
+  .search-box {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+  .input-ville-group,
+  .input-prix-group {
+    flex-basis: 45%;
+  }
+  .input-date-group {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hotels-section {
+    padding: 2rem 1rem 4rem 1rem;
+  }
+  .hotel-card {
+    width: 100%;
+    max-width: 350px;
+  }
+  .search-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn-rechercher {
+    width: 100%;
+    margin-top: 0.5rem;
+    align-self: stretch;
+  }
+  .notes-info {
+    font-size: 0.8rem; /* Plus petit sur mobile */
+  }
+  .date-inputs {
+    flex-direction: row; /* Garde row sur mobile moyen, colonne si très petit */
+    gap: 6px;
+  }
+  @media (max-width: 400px) {
+    .date-inputs {
+      flex-direction: column;
+    }
+  }
+}
+
+/* === ÉTOILES EN ORANGE FONCÉ #D97706 – FONCTIONNE À COUP SÛR === */
+
+.hotel-card .stars span.star-filled {
+  color: #D97706 !important;
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+.hotel-card .stars span.star-empty {
+  color: #E5E7EB !important;
+  font-size: 1.2rem;
+}

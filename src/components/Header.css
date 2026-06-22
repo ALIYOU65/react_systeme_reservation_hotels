@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Supprime toute marge ou padding résiduel du body et du html */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none;
+}
+
+/* Supprime les marges automatiques sur les balises de titre ou div */
+body > *:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.navbar {
+  display: flex; /* Aligne tout sur une ligne */
+  justify-content: space-between; /* Logo à gauche, liens au centre, bouton à droite */
+  align-items: center; /* Centre verticalement */
+  width: 100vw; /* Couvre 100% de la largeur de la fenêtre */
+  background-color: #4530FF; /* Bleu principal */
+  padding: 1rem 3rem;
+  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  position: relative; /* Facultatif, mais garde le header stable */
+}
+
+/* Logo HOTELBOOKING */
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #F9FAFB;
+}
+
+/* Liens de navigation */
+.nav-links {
+  display: flex; /* Met les éléments <li> en ligne */
+  gap: 2rem; /* Espace entre les liens */
+  list-style: none; /* Retire les puces */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none; /* Pas de soulignement */
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #F59E0B; /* Jaune accent sur hover */
+}
+
+/* Bouton Connexion/Inscription */
+.btn-outline-light {
+  background-color: #F59E0B; /* Fond jaune visible en permanence */
+  border: none;
+  color: black;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: #D97706; /* Jaune plus foncé */
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Responsive : mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-outline-light {
+    width: 100%;
+  }
+}

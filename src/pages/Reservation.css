@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --color-primary: #1e3a8a;
+  --color-accent: #f59e0b;
+  --color-text-dark: #111827;
+  --color-background-light: #f9fafb;
+  --color-input-bg: #d9d9d9;
+}
+
+html, body, #root, .reservation-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.reservation-container {
+  background-color: #D9D9D9 !important;
+  min-height: 100vh;
+}
+
+html, body, #root {
+  background-color: #D9D9D9 !important;
+}
+
+/* HERO */
+.hero {
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem 8rem 1rem;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+
+.hero h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+/* SEARCH BOX */
+.search-box-wrapper {
+  width: 100%;
+  margin-top: -80px;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  position: relative;
+}
+
+.search-box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 1.8rem 2rem;
+  width: 90%;
+  max-width: 950px;
+}
+.input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-text-dark);
+}
+
+.search-form input {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--color-input-bg);
+}
+
+.search-box input[type="date"],
+.reservation-box input[type="date"] {
+  padding-right: 3rem !important;
+}
+
+.search-box input[type="date"]::-webkit-calendar-picker-indicator,
+.reservation-box input[type="date"]::-webkit-calendar-picker-indicator {
+  padding-left: 6px;
+  transform: translateX(2px);
+  opacity: 0.95;
+  cursor: pointer;
+}
+
+.btn-rechercher {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  height: 45px;
+}
+
+.btn-rechercher:hover {
+  background-color: #2563eb;
+}
+
+/* RÉSERVATION */
+.reservation-section {
+  padding: 3rem 1rem 4rem 1rem;
+  display: flex;
+  justify-content: center;
+  background: transparent !important; /* Enlève le fond blanc */
+}
+
+.reservation-box {
+  background: transparent !important; /* Enlève le fond blanc */
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: none !important; /* Facultatif : retire l’effet « carte » */
+}
+
+.reservation-box h2 {
+  color: var(--color-primary);
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-reservation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.row-dates-chambre {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.row-nom-prenom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #D1D5DB;
+  background: white;
+}
+
+.input-chambre-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background: #F3F4F6;
+  padding-right: 3rem;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.input-chambre-wrapper:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+.input-fixed {
+  border: none;
+  background: transparent;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  cursor: default;
+  pointer-events: none;
+}
+
+.dropdown-indicator {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.dropdown-indicator::after {
+  content: "▼";
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+.btn-confirmer {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 1rem;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-confirmer:hover {
+  background: #D97706;
+}
+
+.success-message, .error-message {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.success-message {
+  color: #10B981;
+  background: #F0FDF4;
+}
+
+.error-message {
+  color: #EF4444;
+  background: #FEF2F2;
+}
+
+.error-message a {
+  color: #3B82F6;
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .row-dates-chambre,
+  .row-nom-prenom {
+    grid-template-columns: 1fr;
+  }
+  .reservation-box {
+    padding: 1.5rem;
+  }
+}
+
+/* Force le contenu à ne jamais être sous le footer */
+.reservation-container {
+  padding-bottom: 100px; /* Espace de sécurité */
+  box-sizing: border-box;
+}
+
+.reservation-section {
+  background: transparent !important;
+}
+
+
+/* Si tu as un footer fixed */
+body {
+  padding-bottom: 120px !important;
+}
+
