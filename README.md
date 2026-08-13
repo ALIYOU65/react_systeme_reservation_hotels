@@ -1,16 +1,188 @@
-# React + Vite
+# 🏨 HOTELBOOKING - Système de Réservation d'Hôtels
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Présentation
 
-Currently, two official plugins are available:
+**HOTELBOOKING** est une plateforme web full-stack de réservation d’hôtels permettant aux clients de rechercher, consulter et réserver des chambres, tout en offrant aux personnels d’hôtel et aux modérateurs(administrateurs) des outils de gestion complets.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Le projet a été développé dans le cadre du dispositif PASSE de ma formation de Développeur Web et Web Mobile (dispositif permettant aux stagiaires sans stage en entreprise de réaliser un projet concret).
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎯 Objectifs
 
-## Expanding the ESLint configuration
+- Permettre aux clients de rechercher et réserver des chambres d’hôtel facilement
+- Offrir aux personnels d’hôtel une interface pour gérer leurs établissements et chambres
+- Permettre aux modérateurs de valider les hôtels et de gérer les utilisateurs
+- Assurer une expérience utilisateur fluide, moderne et responsive
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 👥 Acteurs / Rôles
+
+| Rôle            | Description                                      |
+|-----------------|--------------------------------------------------|
+| **Visiteur**    | Consulte les hôtels sans connexion               |
+| **Client**      | Recherche, réserve, laisse des avis              |
+| **Personnel**   | Gère ses hôtels et ses chambres                  |
+| **Modérateur**  | Valide les hôtels, gère les utilisateurs et les avis |
+
+---
+
+## 🚀 Fonctionnalités principales
+
+### Côté Client / Visiteur
+- Recherche d’hôtels (ville, dates, prix max)
+- Catalogue d’hôtels avec notes et avis
+- Fiche détail hôtel + liste des chambres
+- Réservation de chambres
+- Consultation de ses réservations et factures
+- Dépôt d’avis
+
+### Côté Personnel d’hôtel
+- Dashboard Personnel
+- Création et gestion des hôtels
+- Gestion des chambres (ajout, modification, disponibilité)
+- Upload de photos
+
+### Côté Modérateur / Admin
+- Validation des hôtels mis en ligne
+- Gestion des utilisateurs (changement de rôle, suppression)
+- Modération des avis
+
+### Authentification
+- Inscription / Connexion
+- Gestion des rôles (Client, Personnel, Modérateur)
+
+---
+
+## 🛠️ Technologies utilisées
+
+| Couche              | Technologies                                      |
+|---------------------|---------------------------------------------------|
+| **Frontend**        | React.js (Vite), CSS                              |
+| **Backend**         | Node.js, Express.js, Mongoose                     |
+| **Base de données** | MongoDB                                           |
+| **Authentification**| JWT                                               |
+| **Upload d’images** | Multer                                            |
+| **Paiement**        | Stripe (simulation)                               |
+
+---
+
+## 📁 Structure du projet
+
+### 🟢 Backend (Node.js)
+```bash
+node_systeme_reservation_hotels/
+├── controllers/          # hotel, chambre, reservation, user, payment...
+├── models/               # hotel, chambre, reservation, user, avis...
+├── routes/               # hotel, chambre, reservation, user...
+├── middlewares/          # auth, roles, multer, upload
+├── validations/
+├── uploads/
+├── db/
+├── .env
+├── package.json
+└── server.js
+
+```
+
+### 🔵 Frontend (React)
+```bash
+react_systeme_reservation_hotels/
+├── public/
+│   └── images/
+├── src/
+│   ├── components/       # Header, Footer
+│   ├── pages/            # Accueil, HotelList, HotelDetail, Dashboard...
+│   ├── utils/            # auth, axiosConfig
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+└── vite.config.js
+
+```
+
+## 📷 Captures d'écran
+
+### 🏠 Page d'accueil
+![Accueil](public/images/accueil.png)
+
+### 📋 Catalogue des hôtels
+![Catalogue](public/images/catalogue.png)
+
+### 🛏️ Fiche détail hôtel + chambres
+![Detail Hotel](public/images/detail-hotel.png)
+
+### 🔐 Inscription / Connexion
+![Inscription Connexion](public/images/inscription-connexion.png)
+
+### 🛡️ Dashboard Modérateur
+![Dashboard Moderateur](public/images/dashboard-moderateur.png)
+
+### 🏨 Dashboard Personnel
+![Dashboard Personnel](public/images/dashboard-personnel.png)
+
+### 👤 Dashboard client
+![Dashboard Client](public/images/dashboard-client.png)
+
+---
+
+## 💻 Installation et Lancement
+
+### 1. Cloner les projets
+
+```bash
+# Frontend
+git clone https://github.com/ALIYOU65/react_systeme_reservation_hotels.git
+
+# Backend
+git clone https://github.com/ALIYOU65/node_systeme_reservation_hotels.git
+```
+
+### 2. Backend
+
+```bash
+cd node_systeme_reservation_hotels
+npm install
+```
+Créer un fichier `.env` :
+
+```env
+MONGO_URI=...
+JWT_SECRET=...
+STRIPE_SECRET_KEY=...
+```
+
+Puis lancer le serveur :
+
+```bash
+npm run dev
+```
+
+### 3. Frontend
+
+```bash
+cd react_systeme_reservation_hotels
+npm install
+npm run dev
+```
+---
+
+## 📈 Améliorations prévues
+
+- Paiement Stripe en production
+- Notifications par email
+- Filtres de recherche plus avancés
+- Tableau de bord statistiques
+- Version mobile optimisée
+
+---
+
+## 👨‍💻 Auteur
+
+**KOUOTOU ALIYOU**  
+Développeur Full Stack Web & Mobile
+
+📧 ali3bakar@gmail.com
+🔗 [GitHub](https://github.com/ALIYOU65)
