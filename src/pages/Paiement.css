@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/* --- Variables de Design --- */
+/* Variables de Design */
 :root {
   --color-primary: #1e3a8a;
   --color-accent: #f59e0b;
@@ -9,7 +9,7 @@
   --color-input-bg: #d9d9d9;
 }
 
-/* --- Reset global avec fond gris clair --- */
+/* Reset global avec fond gris clair */
 html, body, #root, .home-container, .reservation-container {
   margin: 0 !important;
   padding: 0 !important;
@@ -17,15 +17,15 @@ html, body, #root, .home-container, .reservation-container {
   max-width: 100% !important;
   overflow-x: hidden !important;
   font-family: 'Poppins', sans-serif;
-  background-color: #D9D9D9 !important; /* Fond gris clair global */
+  background-color: #D9D9D9 !important; 
 }
 
 .paiement-container {
-  background-color: #D9D9D9 !important; /* Assure pour la page paiement */
-  padding-bottom: 4rem !important; /* Espace en bas pour éviter chevauchement footer */
+  background-color: #D9D9D9 !important; 
+  padding-bottom: 4rem !important; 
 }
 
-/* ---- SECTION HERO ---- */
+/* SECTION HERO */
 .hero {
   background-color: var(--color-primary);
   color: white;
@@ -49,7 +49,7 @@ html, body, #root, .home-container, .reservation-container {
   text-align: center;
 }
 
-/* ---- SEARCH BOX ---- */
+/* SEARCH BOX */
 .search-box-wrapper {
   width: 100%;
   position: relative;
@@ -108,7 +108,7 @@ html, body, #root, .home-container, .reservation-container {
   background-color: var(--color-input-bg);
 }
 
-/* ---- Champs spécifiques ---- */
+/* Champs spécifiques */
 .input-ville,
 .input-date,
 .input-prix {
@@ -116,18 +116,18 @@ html, body, #root, .home-container, .reservation-container {
   background-color: var(--color-input-bg);
 }
 
-/* ---- DATES GROUP ---- */
+/* DATES GROUP */
 .date-inputs {
   display: flex;
   gap: 10px;
 }
 
-/* ---- PRIX ---- */
+/* PRIX */
 .input-prix-group {
-  max-width: none; /* même largeur que les autres champs */
+  max-width: none; 
 }
 
-/* ---- BUTTON ---- */
+/* BUTTON */
 .btn-rechercher {
   background-color: var(--color-primary);
   color: white;
@@ -145,16 +145,16 @@ html, body, #root, .home-container, .reservation-container {
   background-color: #2563eb;
 }
 
-/* ---- MESSAGE D'ERREUR ---- */
+/* MESSAGE D'ERREUR */
 .error-message {
   color: red;
   margin-top: 10px;
   font-size: 0.9rem;
 }
 
-/* ---- FORMULAIRE RÉSERVATION ---- */
+/* FORMULAIRE RÉSERVATION */
 .reservation-section {
-  padding: 3rem 1rem 4rem 1rem; /* marge solide avant le footer */
+  padding: 3rem 1rem 4rem 1rem; 
   display: flex;
   justify-content: center;
   background: white;
@@ -202,40 +202,38 @@ html, body, #root, .home-container, .reservation-container {
   background: white;
 }
 
-/* ------------- CHAMBRE : wrapper cliquable & fiable ------------- */
-/* Règles pour garantir que le wrapper capte le clic et que le clavier fonctionne */
+/* CHAMBRE : wrapper cliquable & fiable */
 .input-chambre-wrapper {
   position: relative;
-  display: flex; /* rend toute la zone cliquable */
+  display: flex; 
   align-items: center;
   cursor: pointer;
   border: 1px solid #D1D5DB;
   border-radius: 8px;
   background: #F3F4F6;
-  padding-right: 3rem; /* laisse la place pour l'indicateur */
+  padding-right: 3rem; 
   z-index: 30;
-  min-height: 44px; /* assure alignement esthétique avec les autres inputs */
+  min-height: 44px; 
   box-sizing: border-box;
 }
 
-/* Labels du formulaire (uniformisés pour alignement) */
 .input-group {
   margin-bottom: 20px !important;
 }
 
 .input-group label {
   display: block;
-  margin-bottom: 8px !important; /* Fixe pour tous */
+  margin-bottom: 8px !important; 
   font-size: 14px !important;
   font-weight: 500 !important;
   color: #6b7280 !important;
-  text-align: left !important; /* Alignement gauche uniforme */
-  font-style: italic; /* Ajout pour élégance */
+  text-align: left !important; 
+  font-style: italic; 
 }
 
 /* Bouton payer */
 .btn-payer {
-  background: var(--color-accent) !important; /* Jaune accent pour cohérence */
+  background: var(--color-accent) !important; 
   width: 100%;
   padding: 12px !important;
   font-size: 16px !important;
@@ -244,7 +242,7 @@ html, body, #root, .home-container, .reservation-container {
 }
 
 .btn-payer:hover:not(:disabled) {
-  background: #d97706 !important; /* Hover plus foncé */
+  background: #d97706 !important; 
 }
 
 .btn-payer:disabled {
@@ -264,12 +262,12 @@ html, body, #root, .home-container, .reservation-container {
 .stripe-input.unified-card {
   display: block !important;
   width: 100% !important;
-  height: auto !important; /* Laisse Stripe gérer la hauteur dynamique (~80px pour numéro + row) */
-  min-height: 56px !important; /* Min pour alignement */
+  height: auto !important; 
+  min-height: 56px !important;
   margin-bottom: 0 !important;
   border-radius: 4px !important;
   box-sizing: border-box !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important; /* Shadow pour pop sur fond gris */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important; 
 }
 
 /* Layout interne de Stripe pour l'élément unifié (numéro full-width, expiry+CVC en row) */
@@ -317,8 +315,8 @@ html, body, #root, .home-container, .reservation-container {
   border: none !important;
   outline: none !important;
   height: 32px !important;
-  width: auto !important; /* Auto pour s'adapter */
-  user-select: text !important; /* Force sélection/saisie texte */
+  width: auto !important; 
+  user-select: text !important;
 }
 
 .StripeElement--Input::placeholder {
@@ -329,12 +327,12 @@ html, body, #root, .home-container, .reservation-container {
 @media (max-width: 600px) {
   .StripeElement--Input--expiry,
   .StripeElement--Input--cvc {
-    width: 100% !important; /* Pleine largeur sur mobile */
+    width: 100% !important; 
   }
 }
 
 /* Centrage du formulaire */
 .paiement-form {
   max-width: 300px !important;
-  margin: 0 auto !important; /* Centre les champs */
+  margin: 0 auto !important; 
 }

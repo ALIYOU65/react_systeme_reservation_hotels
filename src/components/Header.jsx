@@ -4,7 +4,6 @@ import { useAuth } from '../utils/auth';
 import './Header.css';
 
 const Header = () => {
-  // Le hook useAuth doit maintenant renvoyer un objet user qui contient 'prenom'
   const { isAuthenticated, logout, user } = useAuth();
   const navigate = useNavigate();
 
@@ -28,7 +27,7 @@ const Header = () => {
       }}
     >
       <nav className="navbar">
-        {/* 🔹 Logo */}
+        {/* Logo */}
         <Link to="/" className="navbar-brand">HOTELBOOKING</Link>
         
       {/* Liens du menu */}
@@ -56,7 +55,7 @@ const Header = () => {
      )}
      </ul>
 
-        {/* 🔹 Liens conditionnels pour les rôles */}
+        {/* Liens conditionnels pour les rôles */}
         {user?.role === 'PERSONNEL' && (
           <Link className="nav-link" to="/dashboard/personnel">Dashboard Personnel</Link>
         )}
@@ -64,7 +63,7 @@ const Header = () => {
           <Link className="nav-link" to="/dashboard/admin">Dashboard Admin</Link>
         )}
 
-        {/* 🔹 Bouton Connexion / Déconnexion */}
+        {/* Bouton Connexion / Déconnexion */}
         <div className="auth-section">
           {isAuthenticated ? (
             <>

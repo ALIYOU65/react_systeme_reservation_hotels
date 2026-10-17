@@ -39,23 +39,7 @@ h1, h2, .btn-primary {
   background-color: #F59E0B;  /* Jaune pour en attente */
 }
 
-/* 👈 FIX GLOBAL AMÉLIORÉ : Padding pour Header/Footer fixed sur tous les contenus */
-main, .home-container, .dashboard-wrapper, .login-register-container, .hotel-detail-container, .reservation-container {
-  padding-top: 150px !important;  /* Au-dessus du Header */
-  padding-bottom: 200px !important;  /* Au-dessous du Footer (augmenté pour éviter enfouissement) */
-  min-height: calc(100vh - 350px) !important;  /* Hauteur min ajustée (top + bottom + marge) */
-}
 
-/* Si footer est fixe, ajoute ça pour push content */
-.app-wrapper { /* Si tu as <div className="app-wrapper"> dans App.jsx */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.app-wrapper > *:not(footer) { /* Tous sauf footer */
-  flex: 1;
-}
 
 
 

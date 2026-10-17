@@ -7,18 +7,19 @@
   --color-background-light: #f9fafb; /* Fond de la section hôtels */
   --color-input-bg: #d9d9d9; /* Fond gris clair des champs */
 }
-/* --- Reset global --- */
+/* Reset global */
 html, 
 body, 
 #root, 
 #root > div, 
 .home-container {
   background-color: #D9D9D9 !important;
+  height: auto !important;
   min-height: 100vh !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 0 !important; 
 }
-/* ---- SECTION HERO ---- */
+/* SECTION HERO */
 .hero {
   background-color: var(--color-primary);
   color: white;
@@ -40,18 +41,18 @@ body,
   margin: 0;
   text-align: center;
 }
-/* ---- SEARCH BOX ---- */
--wrapper {
+/* SEARCH BOX */
+.search-box-wrapper {
   width: 100%;
   position: relative;
   z-index: 10;
   margin-top: -100px;
 }
-/* === CORRECTION BARRE DE RECHERCHE – VERSION FINALE 100% MAQUETTE === */
+/* BARRE DE RECHERCHE */
 
 .search-box {
   background-color: white;
-  border-radius: 16px;                 /* coins plus arrondis comme sur ta capture */
+  border-radius: 16px;                 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   padding: 2rem 2.5rem;
   width: 90%;
@@ -70,14 +71,14 @@ body,
 .search-form {
   display: flex;
   align-items: flex-end;
-  gap: 1.5rem;                    /* ESPACE PARFAIT ENTRE LES CHAMPS */
-  flex-wrap: wrap;                /* wrap propre sur petits écrans */
+  gap: 1.5rem;                    
+  flex-wrap: wrap;                
   justify-content: center;
 }
 
 /* Tous les champs ont le même fond gris */
 .search-form input {
-  background-color: #D9D9D9 !important;   /* FOND GRIS CLAIR COMME SUR LA MAQUETTE */
+  background-color: #D9D9D9 !important;   
   border: none !important;
   border-radius: 10px;
   padding: 0.9rem 1.2rem;
@@ -93,29 +94,29 @@ body,
   min-width: 240px;
 }
 
-/* Groupe Dates – plus d’espace et alignement parfait */
-/* .input-date-group {
-  flex: 3;
-  min-width: 300px;
-  display: flex;
-  gap: 1rem;
-} */
-
-.date-inputs {
-  display: flex;
-  gap: 1rem;
-  width: 100%;
+.input-date-group {
+  flex: 1.5 !important;
 }
 
-.date-inputs input {
-  flex: 1;
-  min-width: 130px;          /* ← AJOUTE ÇA (ou 140px / 150px) */
+.date-inputs input[type="date"] {
+  min-width: 145px !important;  
+  width: 100% !important;
+  padding: 0.5rem 0.3rem 0.5rem 0.6rem !important; 
+  font-size: 0.85rem !important;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.date-inputs input[type="date"]::-webkit-calendar-picker-indicator {
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+  transform: scale(0.8); 
 }
 
 /* Groupe Prix Max */
 .input-prix-group {
   flex: 1;
-  /* min-width: 140px; */
   max-width: 130px;
 }
 
@@ -135,19 +136,18 @@ body,
 .btn-rechercher:hover {
   background-color: #1e40af;
 }
-/* ---- MESSAGE D'ERREUR ---- */
+/* MESSAGE D'ERREUR */
 .error-message {
   color: red;
   margin-top: 10px;
   font-size: 0.9rem;
 }
-/* ---- SECTION HÔTELS RECOMMANDÉS ---- */
+/* SECTION HÔTELS RECOMMANDÉS */
 .hotels-section {
-  padding: 4rem 2rem 8rem 2rem; /* Le "8rem" correspond au padding-bottom */
+  padding: 4rem 2rem 8rem 2rem; 
   text-align: center;
 }
 .hotels-section h2 {
-  /* Assure le centrage exact du titre 'Hôtels Recommandés' */
   color: var(--color-primary);
   font-weight: 700;
   font-size: 1.6rem;
@@ -160,7 +160,7 @@ body,
   justify-content: center;
   gap: 2rem;
 }
-/* ---- CARTES D'HÔTELS ---- */
+/* CARTES D'HÔTELS */
 .hotel-card {
   background-color: white;
   border-radius: 8px;
@@ -182,7 +182,6 @@ body,
 }
 .hotel-info {
   padding: 1.2rem;
-  /* Utilise flexbox pour mieux positionner les éléments */
   display: flex;
   flex-direction: column;
 }
@@ -197,14 +196,12 @@ body,
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
-  /* Nouvelle propriété pour assurer l'espace avec la ligne suivante */
   min-height: 2.5rem;
 }
-/* Nouveau style pour aligner "À partir de" */
 .price-location-tag {
-  color: #4b5563; /* Couleur similaire au texte de description */
+  color: #4b5563; 
   font-size: 0.9rem;
-  font-weight: 400; /* Normal pour "À partir de" */
+  font-weight: 400; 
   margin-bottom: 0.2rem;
 }
 .price-tag {
@@ -213,16 +210,16 @@ body,
   font-size: 1rem;
 }
 .location-tag {
-  color: var(--color-text-dark); /* Changé pour être plus sombre que la maquette */
+  color: var(--color-text-dark); 
   font-weight: 600;
   font-size: 1rem;
-  margin-bottom: 0.8rem; /* Ajout d'un peu d'espace avant les étoiles */
+  margin-bottom: 0.8rem; 
   margin-top: 0;
 }
 /* Étoiles et Notes */
 .stars {
   display: flex;
-  justify-content: flex-start; /* Aligné à gauche pour étoiles */
+  justify-content: flex-start; 
   align-items: center;
   width: 100%;
   margin-bottom: 0.5rem;
@@ -232,10 +229,10 @@ body,
   font-size: 1rem;
 }
 .star-empty {
-  color: #d1d5db; /* Gris pour vides */
+  color: #d1d5db; 
   font-size: 1rem;
 }
-/* Nouveau : Infos notes/avis */
+/* Infos notes/avis */
 .notes-info {
   display: flex;
   align-items: center;
@@ -246,7 +243,7 @@ body,
 }
 .avg-note {
   font-weight: 600;
-  color: var(--color-accent);  /* Jaune pour note */
+  color: var(--color-accent);  
 }
 .avis-count {
   color: #6b7280;
@@ -262,25 +259,24 @@ body,
   transition: background-color 0.3s ease;
   font-weight: 600;
   font-size: 0.95rem;
-  /* Ajustements pour coller à la maquette après retrait de Réserver */
-  align-self: flex-end; /* Aligner à droite dans le conteneur flex */
-  margin-top: auto; /* Pousse le bouton vers le bas */
+  align-self: flex-end; 
+  margin-top: auto; 
 }
 .btn-details:hover {
   background-color: #d97706;
 }
 .stars_btn-details {
     display: flex;
-    flex-direction: column; /* Étoiles en haut, notes au milieu, btn en bas */
-    width: 100%; /* Important si vous voulez que space-between fonctionne bien */
+    flex-direction: column; 
+    width: 100%; 
 }
-/* ---- RESPONSIVE : Wrap et ajustements sur petits écrans ---- */
+/* RESPONSIVE : Wrap et ajustements sur petits écrans */
 @media (max-width: 1200px) {
   .search-form {
     flex-wrap: wrap; /* Autorise wrap si fenêtre trop petite */
   }
   .input-date-group {
-    flex-basis: 100%; /* Dates pleine largeur si wrap */
+    flex-basis: 100%; 
   }
   .btn-rechercher {
     flex-basis: 100%;
@@ -334,8 +330,6 @@ body,
     }
   }
 }
-
-/* === ÉTOILES EN ORANGE FONCÉ #D97706 – FONCTIONNE À COUP SÛR === */
 
 .hotel-card .stars span.star-filled {
   color: #D97706 !important;

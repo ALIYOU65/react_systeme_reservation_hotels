@@ -1,15 +1,15 @@
-/* MesFactures.css - Styles pour la page Mes Factures */
 .mes-factures-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  margin-top: 100px; 
   font-family: Arial, sans-serif;
 }
 
 .hero-factures {
   text-align: center;
   margin-bottom: 2rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   background: linear-gradient(135deg, #1e3a8a, #3b82f6);
   color: white;
   border-radius: 8px;
@@ -28,7 +28,7 @@
 
 .factures-wrapper {
   background: #f9fafb;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 8px;
 }
 
@@ -82,6 +82,7 @@
   text-align: center;
   padding: 2rem;
   font-size: 1.1rem;
+  margin-top: 100px; 
 }
 
 .error {
@@ -89,7 +90,8 @@
   background: #fee2e2;
   border: 1px solid #fecaca;
   border-radius: 6px;
-  margin: 1rem 0;
+  margin: 100px auto 1rem auto;
+  max-width: 600px;
 }
 
 .error button {
@@ -100,4 +102,12 @@
   border-radius: 4px;
   cursor: pointer;
   margin-left: 1rem;
+}
+
+/* Adaptabilité mobile */
+@media (max-width: 768px) {
+  .mes-factures-container {
+    margin-top: 80px;
+    padding: 1rem;
+  }
 }

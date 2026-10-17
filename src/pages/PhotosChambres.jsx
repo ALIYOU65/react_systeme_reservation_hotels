@@ -90,7 +90,7 @@ const FormulairePhotoChambres = ({ onFormSubmit }) => {
   );
 };
 
-// Sous-composant : Formulaire modification (identique à hôtels, mais endpoints /chambrephotos)
+// Sous-composant : Formulaire modification
 const FormulaireModificationPhotoChambres = ({ photo, onFormSubmit }) => {
   const { token } = useAuth();
   const [nom, setNom] = useState(photo.nom);
@@ -170,7 +170,7 @@ const FormulaireModificationPhotoChambres = ({ photo, onFormSubmit }) => {
   );
 };
 
-// Sous-composant : Liste (endpoints /chambrephotos)
+// Sous-composant : Liste
 const ListePhotosChambres = ({ rafraichirListe, onEditer, onPhotoSupprimee }) => {
   const { token } = useAuth();
   const [photos, setPhotos] = useState([]);
@@ -178,7 +178,7 @@ const ListePhotosChambres = ({ rafraichirListe, onEditer, onPhotoSupprimee }) =>
 
   const fetchPhotos = async () => {
     try {
-      const res = await axios.get('/api/chambrephotos/all', { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get('/api/chambrephotos/my', { headers: { Authorization: `Bearer ${token}` } });
       setPhotos(res.data);
       setMessage('');
     } catch (error) {
@@ -266,3 +266,4 @@ export default function PhotosChambres() {
     </div>
   );
 }
+

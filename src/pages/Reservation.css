@@ -115,16 +115,16 @@ html, body, #root {
   padding: 3rem 1rem 4rem 1rem;
   display: flex;
   justify-content: center;
-  background: transparent !important; /* Enlève le fond blanc */
+  background: transparent !important; 
 }
 
 .reservation-box {
-  background: transparent !important; /* Enlève le fond blanc */
+  background: transparent !important; 
   border-radius: 12px;
   padding: 2rem;
   max-width: 600px;
   width: 100%;
-  box-shadow: none !important; /* Facultatif : retire l’effet « carte » */
+  box-shadow: none !important; 
 }
 
 .reservation-box h2 {
@@ -253,7 +253,7 @@ html, body, #root {
 
 /* Force le contenu à ne jamais être sous le footer */
 .reservation-container {
-  padding-bottom: 100px; /* Espace de sécurité */
+  padding-bottom: 100px; 
   box-sizing: border-box;
 }
 
@@ -262,8 +262,5 @@ html, body, #root {
 }
 
 
-/* Si tu as un footer fixed */
-body {
-  padding-bottom: 120px !important;
-}
+
 

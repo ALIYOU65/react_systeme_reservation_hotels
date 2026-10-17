@@ -106,25 +106,25 @@ react_systeme_reservation_hotels/
 ## 📷 Captures d'écran
 
 ### 🏠 Page d'accueil
-![Accueil](public/images/accueil.png)
+![Accueil](public/images/accueil_booking.png)
 
 ### 📋 Catalogue des hôtels
-![Catalogue](public/images/catalogue.png)
+![Catalogue](public/images/catalogue_booking.png)
 
 ### 🛏️ Fiche détail hôtel + chambres
-![Detail Hotel](public/images/detail-hotel.png)
+![Detail Hotel](public/images/detail_hotel_booking.png)
 
 ### 🔐 Inscription / Connexion
-![Inscription Connexion](public/images/inscription-connexion.png)
+![Inscription Connexion](public/images/inscription-connexion_booking.png)
 
 ### 🛡️ Dashboard Modérateur
-![Dashboard Moderateur](public/images/dashboard-moderateur.png)
+![Dashboard Moderateur](public/images/dashboard-moderateur_booking.png)
 
 ### 🏨 Dashboard Personnel
-![Dashboard Personnel](public/images/dashboard-personnel.png)
+![Dashboard Personnel](public/images/dashboard-personnel_booking.png)
 
 ### 👤 Dashboard client
-![Dashboard Client](public/images/dashboard-client.png)
+![Dashboard Client](public/images/dashboard-client_booking.png)
 
 ---
 

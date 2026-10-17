@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../utils/auth';
 import './PhotosHotels.css';
- 
+
 // Sous-composant : Formulaire création (inline pour simplicité)
 const FormulairePhotoHotels = ({ onFormSubmit }) => {
   const { token } = useAuth();
@@ -25,7 +25,6 @@ const FormulairePhotoHotels = ({ onFormSubmit }) => {
 
   const handleRemoveField = (index) => {
     const nouveauxFichiers = fichiers.filter((_, i) => i !== index);
-    // Libérer preview si existante
     if (fichiers[index].preview) URL.revokeObjectURL(fichiers[index].preview);
     setFichiers(nouveauxFichiers);
   };
@@ -179,7 +178,7 @@ const ListePhotosHotels = ({ rafraichirListe, onEditer, onPhotoSupprimee }) => {
 
   const fetchPhotos = async () => {
     try {
-      const res = await axios.get('/api/photos/all', { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get('/api/photos/my', { headers: { Authorization: `Bearer ${token}` } });
       setPhotos(res.data);
       setMessage('');
     } catch (error) {
@@ -267,3 +266,4 @@ export default function PhotosHotels() {
     </div>
   );
 }
+

@@ -23,7 +23,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: #D9D9D9; /* Renforce le fond au cas où */
+  background-color: #D9D9D9; 
   min-height: 100vh;
 }
 .homeContainer .hero {
@@ -108,12 +108,12 @@ body {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
 }
-/* Ajustements pour éviter chevauchement : largeur accrue pour le groupe prix si nécessaire */
+
 .inputPrixGroup {
   min-width: 180px;
   flex: 1;
 }
-/* Nouveau groupe pour checkbox */
+/* groupe pour checkbox */
 .inputCheckboxGroup {
   display: flex;
   align-items: center;
@@ -206,7 +206,7 @@ body {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto 2rem auto;
-  height: 600px; /* Augmenté pour afficher l'image complètement */
+  height: 600px; 
   overflow: hidden;
   border-radius: var(--border-radius);
 }
@@ -264,13 +264,12 @@ body {
 .active {
   background: var(--color-primary);
 }
-/* === INFOS HÔTEL – PARFAITEMENT IDENTIQUE À LA MAQUETTE === */
 
 .titleRow {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;           /* ← maintenant ça marche à 100% ! Tu peux mettre 1rem, 1.5rem, 2rem… */
+  gap: 1.5rem;           
   margin: 2rem 0 1.5rem 0;
   flex-wrap: wrap;
 }
@@ -293,13 +292,12 @@ body {
 .hotelName {
   font-size: 1.9rem;
   font-weight: 700;
-  color: #000000 !important;   /* ← noir pur, garanti */
+  color: #000000 !important;  
   margin: 0;
   line-height: 1;
   text-align: center;
 }
 
-/* Le reste reste identique et déjà parfait */
 .description {
   font-size: 1rem;
   color: #4B5563;
@@ -338,7 +336,7 @@ body {
 }
 @media (max-width: 768px) {
   .carouselContainer {
-    height: 400px; /* Augmenté pour mobile */
+    height: 400px; 
   }
   .titleRow {
     flex-direction: column;
@@ -356,27 +354,27 @@ body {
 }
 .chamberContent {
   display: flex;
-  flex-direction: row; /* Alignement horizontal: photo à gauche, texte à droite */
+  flex-direction: row; 
   gap: 0;
   align-items: stretch;
-  height: 350px; /* Augmenté pour plus d'espace */
+  height: 350px; 
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  border: 1px solid #000; /* Bordure noire ajoutée */
-  width: 100%; /* Occupe toute la largeur */
+  border: 1px solid #000; 
+  width: 100%;
   margin: 0 !important;
   padding: 0 !important;
 }
 .chamberLeft {
-  flex: 0 0 40%; /* Largeur fixe pour la photo, ajustable */
+  flex: 0 0 40%; 
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
 }
 .chambreCarousel {
-  height: 100%; /* Pleine hauteur du conteneur */
-  border-radius: 0; /* Pas de border-radius sur l'image seule, géré par parent */
+  height: 100%; 
+  border-radius: 0; 
   overflow: hidden;
   width: 100%;
   margin: 0 !important;
@@ -392,11 +390,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background: white; /* Background blanc pour le côté texte */
+  background: white; 
   padding: 1.5rem;
-  justify-content: space-between; /* Pour pousser le bouton en bas */
+  justify-content: space-between;
   margin: 0 !important;
-  border-left: 1px solid #000; /* Bordure noire entre photo et texte */
+  border-left: 1px solid #000;
 }
 .chamberRight h4 {
   font-size: 1.1rem;
@@ -504,7 +502,7 @@ body {
     gap: 1rem;
   }
   .chamberContent {
-    flex-direction: column; /* Vertical sur mobile */
+    flex-direction: column; 
     height: auto;
   }
   .chamberLeft {
@@ -516,8 +514,8 @@ body {
   }
   .chamberRight {
     padding: 1rem;
-    border-left: none; /* Pas de bordure sur mobile */
-    border-top: 1px solid #000; /* Bordure en haut sur mobile */
+    border-left: none; 
+    border-top: 1px solid #000; 
   }
 }
 .avisSection {
@@ -582,8 +580,8 @@ body {
   background: #D1D5DB;
   border-radius: 5px;
   outline: none;
-  appearance: none; /* Fallback standard CSS */
-  -webkit-appearance: none; /* Vendor-specific pour WebKit */
+  appearance: none; 
+  -webkit-appearance: none; 
 }
 .noteSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -643,7 +641,7 @@ body {
     margin-top: 1rem;
   }
 }
-/* Ajouts pour les modificateurs de pagination (assure-toi qu'ils existent dans le CSS si pas déjà) */
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -705,7 +703,7 @@ body {
 }
 /* Empêche le footer de coller au formulaire */
 .homeContainer {
-    padding-bottom: 10rem; /* Ajustable : 3rem, 5rem, etc. */
+    padding-bottom: 10rem; 
 }
 
 

@@ -1,9 +1,7 @@
-/* ==== MES RÉSERVATIONS  ==== */
-
 .mes-reservations-container {
   background-color: #D9D9D9;
   min-height: 100vh;
-  padding-bottom: 180px;      /* ← Espace garanti au-dessus du footer */
+  padding-bottom: 180px;      
   box-sizing: border-box;
 }
 

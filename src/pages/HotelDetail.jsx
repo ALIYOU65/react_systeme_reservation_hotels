@@ -30,7 +30,7 @@ const HotelDetail = () => {
 
   // Filtres pour les chambres
   const [roomFilters, setRoomFilters] = useState({
-    prixMax: 9999,
+    prixMax: 3000,
     onlyAvailable: false
   });
 
@@ -180,8 +180,24 @@ const HotelDetail = () => {
   };
 
   const handleInputChange = (e) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : (e.target.type === 'number' ? parseInt(e.target.value) || 0 : e.target.value);
-    setRoomFilters({ ...roomFilters, [e.target.name]: value });
+    const { name, type, checked, value } = e.target;
+
+    if (type === 'checkbox') {
+      setRoomFilters({ ...roomFilters, [name]: checked });
+      return;
+    }
+
+    if (name === 'prixMax') {
+      const val = parseInt(value) || 0;
+      if (val > 3000) {
+        setRoomFilters({ ...roomFilters, prixMax: 3000 });
+        return;
+      }
+      setRoomFilters({ ...roomFilters, prixMax: val });
+      return;
+    }
+
+    setRoomFilters({ ...roomFilters, [name]: value });
   };
 
   const handleFilterSubmit = (e) => e.preventDefault();
@@ -214,9 +230,17 @@ const HotelDetail = () => {
           <h2>Filtrer les chambres</h2>
           <form className={styles.searchForm} onSubmit={handleFilterSubmit}>
             <div className={`${styles.inputGroup} ${styles.inputPrixGroup}`}>
-              <label htmlFor="prixMax">Prix Max (€)</label>
-              <input type="number" id="prixMax" name="prixMax" value={roomFilters.prixMax} onChange={handleInputChange} />
-            </div>
+    <label htmlFor="prixMax">Prix Max (€)</label>
+    <input 
+      type="number" 
+      id="prixMax" 
+      name="prixMax" 
+      min="0"
+      max="3000"
+      value={roomFilters.prixMax} 
+      onChange={handleInputChange} 
+    />
+  </div>
             <div className={`${styles.inputGroup} ${styles.inputCheckboxGroup}`}>
               <label>
                 <input type="checkbox" id="onlyAvailable" name="onlyAvailable" checked={roomFilters.onlyAvailable} onChange={handleInputChange} />
@@ -264,7 +288,7 @@ const HotelDetail = () => {
             </div>
           )}
 
-          {/* Titre + étoiles de l'hôtel (conservées !) */}
+          {/* Titre + étoiles de l'hôtel */}
           <div className={styles.titleRow}>
             <div className={styles.stars}>
               {Array.from({ length: 5 }).map((_, i) => (
@@ -377,7 +401,7 @@ const HotelDetail = () => {
                       </span>
                     </div>
 
-                    {/* Note SANS étoiles visuelles */}
+                    {/* Note */}
                     <div className={styles.avisStars}>
                       <span className={styles.avisNoteSimple}>{avi.note}/5</span>
                     </div>

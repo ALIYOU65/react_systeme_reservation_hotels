@@ -1,51 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './HotelList.css'; // Ton CSS
-// Composant HotelCard INLINE (copié de l'accueil – pas d'import externe)
+import './HotelList.css';
+
+// Composant HotelCard INLINE
 const HotelCard = ({ id, imageSrc, title, location, price, stars, avgNote, avisCount }) => {
   const navigate = useNavigate();
   const handleDetails = () => navigate(`/hotel/${id}`);
+
   return (
     <div className="hotel-card">
       <img src={imageSrc || "https://via.placeholder.com/300x180?text=Hôtel"} alt={title} />
       <div className="hotel-info">
         <h3>{title}</h3>
-        <h4 className="price-location-tag">À partir de <span className="price-tag">{price ? `${price}€` : 'N/A'} / nuit</span></h4>
+        <h4 className="price-location-tag">
+          À partir de <span className="price-tag">{price ? `${price}€` : 'N/A'} / nuit</span>
+        </h4>
         <h4 className="location-tag">{location || 'Ville Inconnue'}</h4>
         <div className="stars_btn-details">
           <div className="stars" data-stars={stars || 0}>
             {Array.from({ length: 5 }).map((_, idx) => (
-              <span key={idx} className={idx < (stars || 0) ? "star-filled" : "star-empty"}>★</span>
+              <span key={idx} className={idx < (stars || 0) ? "star-filled" : "star-empty"}>
+                ★
+              </span>
             ))}
           </div>
           <div className="notes-info">
             <span className="avg-note">{avgNote ? avgNote.toFixed(1) : 'N/A'}</span>
             <span className="avis-count">({avisCount || 0} avis)</span>
           </div>
-          <button className="btn-details" onClick={handleDetails}>Voir Détails</button>
+          <button className="btn-details" onClick={handleDetails}>
+            Voir Détails
+          </button>
         </div>
       </div>
     </div>
   );
 };
+
 const HotelList = () => {
   const navigate = useNavigate();
-  const [allHotels, setAllHotels] = useState([]); // Tous les hôtels fetchés
-  const [hotels, setHotels] = useState([]); // Hôtels filtrés et paginés
+  const [allHotels, setAllHotels] = useState([]);
+  const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  // Filtres de recherche (comme accueil)
+
+  // Date du jour pour contrainte `min`
+  const todayStr = new Date().toISOString().split("T")[0];
+
+  // Dates par défaut (Demain & Après-demain)
+  const tomorrowDate = new Date();
+  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+
+  const dayAfterTomorrowDate = new Date();
+  dayAfterTomorrowDate.setDate(dayAfterTomorrowDate.getDate() + 2);
+
+  const tomorrow = tomorrowDate.toISOString().split("T")[0];
+  const dayAfterTomorrow = dayAfterTomorrowDate.toISOString().split("T")[0];
+
+  // Filtres de recherche identiques à la page d'accueil
   const [searchFilters, setSearchFilters] = useState({
     ville: '',
-    dateDebut: '',
-    dateFin: '',
-    prixMax: ''  // Vide par défaut pour afficher tous initialement
+    dateDebut: tomorrow,
+    dateFin: dayAfterTomorrow,
+    prixMax: 3000,
   });
-  const hotelsPerPage = 6; // 2 lignes x 3 pour matcher maquette
-  // Mocks pour simulation (7 hôtels, incluant Monaco pour test)
+
+  const hotelsPerPage = 6;
+
   const mockHotels = [
     { _id: "1", nom: "Le Grand Paris", adresse: "Paris", prix: 550, etoiles: 5, avgNote: 4.9, avis: [{note: 5}], photos: [{images: [{url: '/img1.jpg'}]}], validated: true },
     { _id: "2", nom: "Hôtel Le Zénith", adresse: "New-york", prix: 480, etoiles: 5, avgNote: 4.8, avis: [{note: 5}], photos: [{images: [{url: '/img2.jpg'}]}], validated: true },
@@ -55,92 +79,103 @@ const HotelList = () => {
     { _id: "6", nom: "Beach Marseille", adresse: "Marseille", prix: 300, etoiles: 4, avgNote: 4.5, avis: [{note: 4}], photos: [{images: [{url: '/img6.jpg'}]}], validated: true },
     { _id: "7", nom: "Monaco Palace", adresse: "Monaco", prix: 700, etoiles: 5, avgNote: 4.9, avis: [{note: 5}], photos: [{images: [{url: '/img7.jpg'}]}], validated: true },
   ];
-  // Fetch tous les hôtels validés (sans pagination backend, pour client-side)
+
   const fetchAllHotels = async () => {
     setLoading(true);
     setError('');
     try {
-      const params = new URLSearchParams({
-        validated: true // Seulement validés
-      });
-      console.log('API Call URL:', `http://localhost:3000/api/hotels?${params}`); // Debug
+      const params = new URLSearchParams({ validated: true });
       const response = await axios.get(`http://localhost:3000/api/hotels?${params}`);
       let data = Array.isArray(response.data) ? response.data : (response.data.hotels || []);
-      // Filtre validated client-side
       data = data.filter(hotel => hotel.validated === true || hotel.validated === 'true');
-      console.log('Fetched All Hotels:', data.map(h => ({ id: h._id, validated: h.validated }))); // Debug
       setAllHotels(data);
     } catch (err) {
       console.error('Erreur fetch hôtels :', err);
       setError('Erreur chargement des hôtels. Utilisation des données simulées.');
-      setAllHotels(mockHotels); // Fallback mocks pour test
+      setAllHotels(mockHotels);
     } finally {
       setLoading(false);
     }
   };
-  // Applique filtres et pagination client-side
+
   const applyFiltersAndPagination = () => {
     let filtered = [...allHotels];
-    const { ville, dateDebut, dateFin, prixMax } = searchFilters;
+    const { ville, prixMax } = searchFilters;
     const maxPrix = prixMax ? parseInt(prixMax) : Infinity;
     const villeLower = (ville || '').toLowerCase().trim();
-    // Filtre prix
+
     filtered = filtered.filter(hotel => parseFloat(hotel.prix || 0) <= maxPrix);
-    // Filtre ville (insensible à la casse)
+
     if (villeLower) {
       filtered = filtered.filter(hotel => 
         (hotel.adresse || '').toLowerCase().includes(villeLower)
       );
     }
-    // Filtre dates (simulé : assume toutes disponibles si pas de backend check)
-    // Si backend gère dates, refetch ; ici client-side simple
-    console.log(`🔍 Filtre appliqué: ville='${ville}', prixMax=${maxPrix}, résultat: ${filtered.length} hôtels`); // Debug
-    // Tri par nom (ou avgNote si disponible)
+
     filtered.sort((a, b) => (a.nom || '').localeCompare(b.nom || ''));
-    // Pagination
+
     const total = filtered.length;
     const totalPagesCalc = Math.ceil(total / hotelsPerPage);
-    setTotalPages(totalPagesCalc);
+    setTotalPages(totalPagesCalc || 1);
+
     const startIndex = (currentPage - 1) * hotelsPerPage;
     const endIndex = startIndex + hotelsPerPage;
     const pagedHotels = filtered.slice(startIndex, endIndex);
     setHotels(pagedHotels);
   };
+
   useEffect(() => {
-    fetchAllHotels(); // Fetch une fois tous les hôtels
+    fetchAllHotels();
   }, []);
+
   useEffect(() => {
     if (allHotels.length > 0) {
-      applyFiltersAndPagination(); // Applique filtres et pagination à chaque changement
+      applyFiltersAndPagination();
     }
   }, [allHotels, searchFilters, currentPage]);
+
   const handleInputChange = (e) => {
-    setSearchFilters({ ...searchFilters, [e.target.name]: e.target.value });
-    setCurrentPage(1); // Reset page sur changement filtre
+    const { name, value } = e.target;
+
+    if (name === "prixMax") {
+      const val = Number(value);
+      if (val > 3000) {
+        setSearchFilters({ ...searchFilters, prixMax: 3000 });
+        setCurrentPage(1);
+        return;
+      }
+    }
+
+    setSearchFilters({ ...searchFilters, [name]: value });
+    setCurrentPage(1);
   };
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Validation dates
     if (searchFilters.dateDebut && searchFilters.dateFin && new Date(searchFilters.dateDebut) >= new Date(searchFilters.dateFin)) {
       alert("La date de fin doit être après la date de début !");
       return;
     }
-    applyFiltersAndPagination(); // Applique immédiatement
+    applyFiltersAndPagination();
   };
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
+
   if (loading) return <div className="loading">Chargement des hôtels...</div>;
   if (error) return <div className="error">{error} <button onClick={fetchAllHotels}>Réessayer</button></div>;
+
   return (
     <div className="home-container">
-      {/* Hero adapté */}
+      {/* Hero */}
       <section className="hero">
         <h1>Trouvez et Réservez Votre Séjour Parfait</h1>
       </section>
-      {/* Barre de Recherche (comme accueil) */}
+
+      {/* Barre de Recherche identique à Accueil */}
       <div className="search-box-wrapper">
         <div className="search-box">
           <h2>Rechercher un Hôtel</h2>
@@ -156,14 +191,15 @@ const HotelList = () => {
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="input-group input-date-group">
-              <label htmlFor="dates">Dates</label>
+              <label htmlFor="dateDebut">Dates</label>
               <div className="date-inputs">
                 <input
                   type="date"
                   id="dateDebut"
                   name="dateDebut"
-                  className="input-date"
+                  min={todayStr}
                   value={searchFilters.dateDebut}
                   onChange={handleInputChange}
                 />
@@ -171,29 +207,33 @@ const HotelList = () => {
                   type="date"
                   id="dateFin"
                   name="dateFin"
-                  className="input-date"
+                  min={searchFilters.dateDebut || todayStr}
                   value={searchFilters.dateFin}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
+
             <div className="input-group input-prix-group">
               <label htmlFor="prixMax">Prix Max (€)</label>
               <input
                 type="number"
                 id="prixMax"
                 name="prixMax"
-                placeholder="0"
+                min="0"
+                max="3000"
                 value={searchFilters.prixMax}
                 onChange={handleInputChange}
               />
             </div>
+
             <button type="submit" className="btn-rechercher">Rechercher</button>
           </form>
           {error && <p className="error-message">{error}</p>}
         </div>
       </div>
-      {/* Grille Hôtels - 3 colonnes pour matcher maquette */}
+
+      {/* Section Hôtels */}
       <section className="hotels-section">
         <h2>Hôtels</h2>
         {hotels.length > 0 ? (
@@ -215,7 +255,8 @@ const HotelList = () => {
         ) : (
           <p>Aucun hôtel trouvé. Ajustez les filtres ou ajoutez des hôtels en admin.</p>
         )}
-        {/* Pagination - Toujours affichée pour visibilité */}
+
+        {/* Pagination */}
         <div className="pagination hotel-pagination">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
@@ -228,9 +269,7 @@ const HotelList = () => {
             <button
               key={index + 1}
               onClick={() => handlePageChange(index + 1)}
-              className={`page-number-btn ${
-                currentPage === index + 1 ? "active" : ""
-              }`}
+              className={`page-number-btn ${currentPage === index + 1 ? "active" : ""}`}
             >
               {index + 1}
             </button>
@@ -247,28 +286,12 @@ const HotelList = () => {
     </div>
   );
 };
-// Fonction utilitaire (réutilisée de HotelDetail)
+
 const getAllImages = (photos) => {
   return photos.flatMap(photo => photo.images || []);
 };
+
 export default HotelList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

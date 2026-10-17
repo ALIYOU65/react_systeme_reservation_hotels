@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import "./Accueil.css";
 
-/* ---------------------------------------------------
-   COMPOSANT : CARD HÔTEL
---------------------------------------------------- */
+/* COMPOSANT : CARD HÔTEL */
 const HotelCard = ({ imageSrc, title, location, description, price, stars, id, avgNote, avisCount }) => {
   const navigate = useNavigate();
   const handleDetails = () => navigate(`/hotel/${id}`);
@@ -29,11 +27,17 @@ const HotelCard = ({ imageSrc, title, location, description, price, stars, id, a
 
         <div className="stars_btn-details">
           <div className="stars" data-stars={stars || 0}>
-            {Array.from({ length: 5 }).map((_, idx) => (
-              <span key={idx} className={idx < (stars || 0) ? "star-filled" : "star-empty"}>
-                ★
-              </span>
-            ))}
+            {Array.from({ length: 5 }).map((_, idx) => {
+              const isFilled = idx < Number(stars || 0);
+              return (
+                <span
+                  key={idx}
+                  className={isFilled ? "star-filled" : "star-empty"}
+                >
+                  ★
+                </span>
+              );
+            })}
           </div>
 
           <div className="notes-info">
@@ -50,31 +54,37 @@ const HotelCard = ({ imageSrc, title, location, description, price, stars, id, a
   );
 };
 
-/* ---------------------------------------------------
-   PAGE ACCUEIL
---------------------------------------------------- */
+/* PAGE ACCUEIL */
 const Accueil = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Dates par défaut
-  const tomorrow = new Date("2025-11-27").toISOString().split("T")[0];
-  const dayAfterTomorrow = new Date("2025-11-28").toISOString().split("T")[0];
+  // Date du jour au format YYYY-MM-DD
+  const todayStr = new Date().toISOString().split("T")[0];
+
+  // Dates par défaut (Demain et Après-demain)
+  const tomorrowDate = new Date();
+  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+
+  const dayAfterTomorrowDate = new Date();
+  dayAfterTomorrowDate.setDate(dayAfterTomorrowDate.getDate() + 2);
+
+  const tomorrow = tomorrowDate.toISOString().split("T")[0];
+  const dayAfterTomorrow = dayAfterTomorrowDate.toISOString().split("T")[0];
 
   const [searchFilters, setSearchFilters] = useState({
     ville: "",
     dateDebut: tomorrow,
     dateFin: dayAfterTomorrow,
-    prixMax: 800,
+    prixMax: 3000,
   });
 
+  const [allHotels, setAllHotels] = useState([]);
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  /* ---------------------------------------------------
-      MOCKS (7 hôtels)
-  --------------------------------------------------- */
+  /* MOCKS (7 hôtels) */
   const mockHotels = [
     { _id: "mock1", location: "Paris", title: "Le Grand Paris", description: "Hôtel luxueux.", price: 550, stars: 5, avgNote: 4.9, avisCount: 156 },
     { _id: "mock2", location: "New-york", title: "Hôtel Le Zénith", description: "Calme, proche centre.", price: 480, stars: 5, avgNote: 4.8, avisCount: 120 },
@@ -85,9 +95,7 @@ const Accueil = () => {
     { _id: "mock7", location: "Nice", title: "City Nice", description: "Urbain.", price: 400, stars: 4, avgNote: 4.3, avisCount: 80 },
   ];
 
-  /* ---------------------------------------------------
-     NOUVEAU : CALCULER AVGNOTE POUR CHAQUE HÔTEL
-  --------------------------------------------------- */
+  /* CALCULER AVGNOTE POUR CHAQUE HÔTEL */
   const computeAvgNote = async (hotelId) => {
     try {
       const res = await axios.get(`/api/hotels/${hotelId}/avis`);
@@ -103,24 +111,15 @@ const Accueil = () => {
     }
   };
 
-  /* ---------------------------------------------------
-     FETCH HOTELS + CALCUL DES NOTES
-  --------------------------------------------------- */
-  const fetchHotels = async (filters = {}, forceTop3 = false) => {
+  /* FETCH ALL HOTELS */
+  const fetchHotels = async () => {
     setLoading(true);
     setError("");
 
     let data = [];
 
     try {
-      const params = new URLSearchParams({
-        validated: true,
-        prixMax: filters.prixMax || 800,
-        ville: filters.ville || "",
-        dateDebut: filters.dateDebut || "",
-        dateFin: filters.dateFin || "",
-      }).toString();
-
+      const params = new URLSearchParams({ validated: true }).toString();
       const response = await axios.get(`/api/hotels?${params}`);
       data = Array.isArray(response.data) ? response.data : response.data.hotels || [];
     } catch (e) {
@@ -128,7 +127,6 @@ const Accueil = () => {
       data = mockHotels;
     }
 
-    // NORMALISATION
     const mapped = data.map((hotel) => ({
       ...hotel,
       id: hotel._id,
@@ -136,6 +134,7 @@ const Accueil = () => {
       price: parseFloat(hotel.prix || hotel.price || 0),
       location: hotel.adresse || hotel.location || "Ville Inconnue",
       description: hotel.description || "Description manquante",
+      stars: Number(hotel.etoiles || hotel.stars || 0),
       imageSrc:
         hotel.photos?.[0]?.images?.[0]?.url
           ? hotel.photos[0].images[0].url.startsWith("http")
@@ -144,45 +143,74 @@ const Accueil = () => {
           : "https://via.placeholder.com/300x200?text=Hôtel+Image",
     }));
 
-    /* ---------------------------------------------------
-        NOUVEAU : CALCUL DES NOTES POUR CHAQUE HOTEL
-    --------------------------------------------------- */
     const hotelsWithNotes = await Promise.all(
       mapped.map(async (h) => {
         const { avgNote, avisCount } = await computeAvgNote(h.id);
-        return { ...h, avgNote, avisCount };
+        return { ...h, avgNote: h.avgNote || avgNote, avisCount: h.avisCount || avisCount };
       })
     );
 
-    /* ---------------------------------------------------
-        TOP 3 SUR L'ACCUEIL
-    --------------------------------------------------- */
-    const finalHotels =
-      forceTop3
-        ? hotelsWithNotes.sort((a, b) => b.avgNote - a.avgNote).slice(0, 3)
-        : hotelsWithNotes;
-
-    setHotels(finalHotels);
+    setAllHotels(hotelsWithNotes);
     setLoading(false);
   };
 
-  /* ---------------------------------------------------
-      AU CHARGEMENT → TOP 3
-  --------------------------------------------------- */
+  /* FILTRAGE INSTANTANÉ & RETOUR AU TOP 3 */
+  const applyFilters = () => {
+    let filtered = [...allHotels];
+    const { ville, prixMax } = searchFilters;
+    const maxPrix = prixMax ? parseFloat(prixMax) : Infinity;
+    const villeLower = (ville || "").toLowerCase().trim();
+
+    // Filtre par prix max
+    filtered = filtered.filter((hotel) => hotel.price <= maxPrix);
+
+    // Si une ville est tapée (ex: "p" ou "paris")
+    if (villeLower) {
+      filtered = filtered.filter((hotel) =>
+        hotel.location.toLowerCase().includes(villeLower)
+      );
+    } else {
+      // Si la recherche de ville est vide : réafficher les Top 3 les mieux notés
+      filtered = filtered.sort((a, b) => b.avgNote - a.avgNote).slice(0, 3);
+    }
+
+    setHotels(filtered);
+  };
+
+  // Chargement initial des hôtels
   useEffect(() => {
-    fetchHotels({}, true);
+    fetchHotels();
   }, []);
 
-  /* ---------------------------------------------------
-      FORM
-  --------------------------------------------------- */
+  // Filtrage automatique dès que `searchFilters` ou `allHotels` changent
+  useEffect(() => {
+    if (allHotels.length > 0) {
+      applyFilters();
+    }
+  }, [allHotels, searchFilters]);
+
+  /* GESTION DES INPUTS */
   const handleInputChange = (e) => {
-    setSearchFilters({ ...searchFilters, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === "prixMax") {
+      const val = Number(value);
+      if (val > 3000) {
+        setSearchFilters({ ...searchFilters, prixMax: 3000 });
+        return;
+      }
+    }
+
+    setSearchFilters({ ...searchFilters, [name]: value });
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    fetchHotels(searchFilters);
+    if (searchFilters.dateDebut && searchFilters.dateFin && new Date(searchFilters.dateDebut) >= new Date(searchFilters.dateFin)) {
+      alert("La date de fin doit être après la date de début !");
+      return;
+    }
+    applyFilters();
   };
 
   if (loading) return <div className="loading">Chargement des hôtels...</div>;
@@ -212,14 +240,33 @@ const Accueil = () => {
             <div className="input-group input-date-group">
               <label>Dates</label>
               <div className="date-inputs">
-                <input type="date" name="dateDebut" value={searchFilters.dateDebut} onChange={handleInputChange} />
-                <input type="date" name="dateFin" value={searchFilters.dateFin} onChange={handleInputChange} />
+                <input
+                  type="date"
+                  name="dateDebut"
+                  min={todayStr}
+                  value={searchFilters.dateDebut}
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="date"
+                  name="dateFin"
+                  min={searchFilters.dateDebut || todayStr}
+                  value={searchFilters.dateFin}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
 
             <div className="input-group input-prix-group">
               <label>Prix Max (€)</label>
-              <input type="number" name="prixMax" value={searchFilters.prixMax} onChange={handleInputChange} />
+              <input
+                type="number"
+                name="prixMax"
+                min="0"
+                max="3000"
+                value={searchFilters.prixMax}
+                onChange={handleInputChange}
+              />
             </div>
 
             <button type="submit" className="btn-rechercher">Rechercher</button>
@@ -239,7 +286,7 @@ const Accueil = () => {
             ))}
           </div>
         ) : (
-          <p>Aucun hôtel trouvé.</p>
+          <p>Aucun hôtel trouvé pour ces critères.</p>
         )}
       </section>
     </main>
@@ -247,23 +294,5 @@ const Accueil = () => {
 };
 
 export default Accueil;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

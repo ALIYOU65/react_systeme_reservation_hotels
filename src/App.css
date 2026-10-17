@@ -1,8 +1,22 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Réinitialisation globale des marges et hauteur totale du viewport */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Conteneur principal englobant Header, Main et Footer */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* S'assure que l'application fait au moins la hauteur de l'écran */
+}
+
+/* La balise main prend tout l'espace disponible et pousse le footer vers le bas */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo {
